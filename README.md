@@ -134,8 +134,8 @@ static try<TValue, TError = any, TArgs extends Array<any> = []>(
 Example:
 
 ```ts
-Result.try(JSON.parse, "{ "foo": "bar" }");
-Result.try(() => JSON.parse("{ "foo": "bar" }"));
+Result.try(JSON.parse, '{ "foo": "bar" }');
+Result.try(() => JSON.parse('{ "foo": "bar" }'));
 Result.try(JSON.parse, "not a valid JSON string");
 ```
 
