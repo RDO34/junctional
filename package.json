@@ -7,10 +7,10 @@
   "author": "Ross Donohoe <rossdon.95@googlemail.com>",
   "repository": "https://github.com/RDO34/junctional.git",
   "keywords": [
-    "testing",
-    "test",
-    "builder",
-    "fixtures"
+    "result",
+    "option",
+    "functional",
+    "utility"
   ],
   "files": [
     "/lib"
