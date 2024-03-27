@@ -41,6 +41,16 @@ describe("Result", () => {
         const out = defaultToZero(result);
         expect(out).toBe(0);
       });
+
+      it("should allow no ok value", () => {
+        const result = Result.ok();
+        expect(result.isOk()).toBe(true);
+      });
+
+      it("should allow no err value", () => {
+        const result = Result.err();
+        expect(result.isOk()).toBe(true);
+      });
     });
   });
 

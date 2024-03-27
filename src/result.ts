@@ -107,11 +107,11 @@ export class Result<TValue, TError = any> {
     }
   }
 
-  static ok<TValue>(value: TValue) {
+  static ok<TValue = void>(value: TValue = undefined as any) {
     return new Result({ [Result.Ok]: value });
   }
 
-  static err<TError>(error: TError) {
+  static err<TError = void>(error: TError = undefined as any) {
     return new Result<any, TError>({ [Result.Err]: error });
   }
 
