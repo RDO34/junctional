@@ -1,6 +1,6 @@
 {
   "name": "junctional",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Simple Result and Option types for TypeScript",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
