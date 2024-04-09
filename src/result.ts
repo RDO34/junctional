@@ -14,10 +14,10 @@ export class Result<TValue, TError = any> {
     }
   }
 
-  match<TOut>(matchArgs: {
-    [Result.Ok]: (value: TValue) => TOut;
-    [Result.Err]: (error: TError) => TOut;
-  }): TOut {
+  match<TOkOut, TErrOut>(matchArgs: {
+    [Result.Ok]: (value: TValue) => TOkOut;
+    [Result.Err]: (error: TError) => TErrOut;
+  }): TOkOut | TErrOut {
     if (this.error !== undefined) {
       return matchArgs[Result.Err](this.error);
     } else {
@@ -37,7 +37,7 @@ export class Result<TValue, TError = any> {
     mapper: (value: TValue) => TNewValue
   ): Result<TNewValue, TError | TNewError> {
     if (this.error !== undefined) {
-      return Result.err<TError>(this.error as TError);
+      return Result.err(this.error as TError);
     }
 
     return Result.try(mapper, this.value as TValue);
@@ -92,7 +92,7 @@ export class Result<TValue, TError = any> {
     try {
       return Result.ok(fn(...args));
     } catch (error) {
-      return Result.err<TError>(error as TError);
+      return Result.err(error as TError);
     }
   }
 
@@ -107,12 +107,12 @@ export class Result<TValue, TError = any> {
     }
   }
 
-  static ok<TValue = void>(value: TValue = undefined as any) {
-    return new Result({ [Result.Ok]: value });
+  static ok<TValue = void, TError = any>(value: TValue = undefined as any) {
+    return new Result<TValue, TError>({ [Result.Ok]: value });
   }
 
-  static err<TError = void>(error: TError = undefined as any) {
-    return new Result<any, TError>({ [Result.Err]: error });
+  static err<TValue, TError = void>(error: TError = undefined as any) {
+    return new Result<TValue, TError>({ [Result.Err]: error });
   }
 
   static readonly Ok: unique symbol = Symbol("Result::Ok");

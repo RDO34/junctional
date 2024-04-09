@@ -23,6 +23,6 @@
   },
   "scripts": {
     "test": "vitest",
-    "build": "npx tsc src/index.ts --outDir lib --declaration --target es2016"
+    "build": "npx tsc src/index.ts --outDir lib --declaration --target es6"
   }
 }

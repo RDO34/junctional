@@ -13,10 +13,10 @@ export class Option<TValue> {
     }
   }
 
-  match<TOut>(matchArgs: {
-    [Option.Some]: (value: TValue) => TOut;
-    [Option.None]: () => TOut;
-  }): TOut {
+  match<TSomeOut, TNoneOut>(matchArgs: {
+    [Option.Some]: (value: TValue) => TSomeOut;
+    [Option.None]: () => TNoneOut;
+  }): TSomeOut | TNoneOut {
     if (this.value === undefined) {
       return matchArgs[Option.None]();
     } else {
@@ -116,8 +116,8 @@ export class Option<TValue> {
     return new Option({ [Option.Some]: value });
   }
 
-  static none() {
-    return new Option<any>({ [Option.None]: null });
+  static none<TValue = any>() {
+    return new Option<TValue>({ [Option.None]: null });
   }
 
   static readonly Some: unique symbol = Symbol("Option::Some");
